@@ -1,6 +1,6 @@
 ##
 ## Makefile for haskell_pres
-## Made by nicuveo <crucuny@gmail.com>
+## Made by nicuveo <antoine.jp.leblanc@gmail.com>
 ##
 
 

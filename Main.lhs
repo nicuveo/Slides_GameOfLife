@@ -1,6 +1,6 @@
 %%
 %% Main.lhs
-%% Made by nicuveo <crucuny@gmail.com>
+%% Made by nicuveo <antoine.jp.leblanc@gmail.com>
 %%
 
 

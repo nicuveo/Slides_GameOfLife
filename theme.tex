@@ -1,0 +1,257 @@
+%%
+%% theme.tex for seminaire
+%% Made by leblanc <nicuveo@my.epita.fr>
+%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Original theme
+
+\usepackage{pgf}
+\usepackage{listings}
+\mode<presentation>{\usetheme{Warsaw}}
+\usecolortheme{orchid}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Colors
+
+% define
+
+
+%\definecolor{my-color-1}{RGB}{ 60,  64, 132}
+%\definecolor{my-color-2}{RGB}{175, 200, 230}
+%\definecolor{my-color-3}{RGB}{ 20,  20,  70}
+\definecolor{my-color-1}{RGB}{180,  25, 160} % primary
+\definecolor{my-color-2}{RGB}{220, 150, 215} % lighter
+\definecolor{my-color-3}{RGB}{  0,   0,   0} % unknown
+\definecolor{my-color-4}{RGB}{  0,   0,   0} % darker
+
+% \definecolor{a-block-color}{RGB}{225, 210, 240}
+
+\colorlet{block-color}{my-color-2!32!white}
+\colorlet{outer-cell}{my-color-2!80!black}
+
+\definecolor{tab-1}{rgb}{0.04,0.34,0.58}
+\definecolor{tab-2}{rgb}{0.36,0.56,0.72}
+\definecolor{tab-3}{rgb}{0.68,0.78,0.86}
+
+
+% set
+
+\setbeamercolor{structure}{fg=my-color-1}
+\setbeamercolor{alerted text}{fg=my-color-1!56!red}
+
+\setbeamercolor{palette primary}   {fg=white, bg=my-color-1}
+\setbeamercolor{palette secondary} {fg=black, bg=my-color-2}
+\setbeamercolor{palette tertiary}  {fg=white, bg=my-color-3}
+\setbeamercolor{palette quaternary}{fg=white, bg=my-color-4}
+
+% \setbeamercolor{block title}{fg=black,bg=block-color}
+% \setbeamercolor{block title example}{use=example text,fg=blue,bg=example text.fg!75!bg}
+% \setbeamercolor{block body example}{parent=normal text,use=block title example,bg=block title example.bg!25!bg}
+% \setbeamercolor{block title alerted}{use=alerted text,fg=black,bg=a-block-color}
+
+\setbeamercolor{block body}{parent=normal text, use=block title, bg=block-color}
+\setbeamercolor{block body alerted}{parent=normal text, use=block title alerted, bg=a-block-color}
+
+% \setbeamercolor{sidebar}{bg=yellow!70}
+% \setbeamercolor{palette sidebar primary}   {fg=blue}
+% \setbeamercolor{palette sidebar secondary} {fg=blue!75}
+% \setbeamercolor{palette sidebar tertiary}  {fg=blue!75}
+% \setbeamercolor{palette sidebar quaternary}{fg=red}
+
+\setbeamercolor*{separation line}{}
+\setbeamercolor*{fine separation line}{}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Templates
+
+\defbeamertemplate*{headline}{}
+{
+  \leavevmode%
+  \hbox
+  {%
+    \begin{beamercolorbox}[wd=0.5\paperwidth,ht=2ex,dp=1.5ex,center]
+      {section in head/foot}%
+      \usebeamerfont{section in head/foot}
+      \insertsectionhead
+    \end{beamercolorbox}%
+
+    \begin{beamercolorbox}[wd=0.5\paperwidth,ht=2ex,dp=1.5ex,center]
+      {date in head/foot}%
+      \usebeamerfont{subsection in head/foot}
+      \insertsubsection
+    \end{beamercolorbox}%
+  }%
+  \vskip0pt%
+}
+
+\defbeamertemplate{footline}{mine}[2]
+{
+  \leavevmode%
+  \hbox
+  {%
+    \begin{beamercolorbox}[wd=.160\paperwidth,ht=2.25ex,dp=1.125ex,center]
+      {author in head/foot}%
+      \usebeamerfont{author in head/foot}
+      \pgfimage[mask=#2,interpolate=true,height=1cm]{#1}
+    \end{beamercolorbox}%
+
+    \begin{beamercolorbox}[wd=.680\paperwidth,ht=2.25ex,dp=1.125ex,center]
+      {title in head/foot}%
+      \usebeamerfont{title in head/foot}
+      \insertshorttitle
+    \end{beamercolorbox}%
+
+    \begin{beamercolorbox}[wd=.160\paperwidth,ht=2.25ex,dp=1.125ex,center]
+      {date in head/foot}
+      \usebeamerfont{date in head/foot}
+      \insertframenumber{} / \inserttotalframenumber{}
+    \end{beamercolorbox}%
+  }%
+  \vskip0pt%
+}
+
+\newcommand{\setfooterlogo}[2]
+{
+  \setbeamertemplate{footline}[mine]{#1}{#2}
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Code environnement
+
+\definecolor{hsk-comment}  {gray}{0.30}
+\colorlet{hsk-built-ins}{my-color-3!60!blue}
+\colorlet{hsk-types}    {my-color-1}
+\colorlet{hsk-operators}{my-color-1!40!black}
+\colorlet{hsk-keywords} {my-color-1!60!black}
+\colorlet{hsk-consts}   {my-color-1!60!blue}
+\colorlet{hsk-string}   {my-color-1!60!red}
+
+\lstdefinelanguage{ColorHaskell} {
+        basicstyle=\ttfamily\footnotesize,
+        sensitive=true,
+        morecomment=[l][\color{hsk-comment}\ttfamily\footnotesize]{--},
+        morecomment=[s][\color{hsk-comment}\ttfamily\footnotesize]{\{-}{-\}},
+        morestring=[b]",
+        stringstyle=\color{hsk-string},
+        showstringspaces=false,
+        numberstyle=\footnotesize
+        showspaces=false,
+        breaklines=true,
+        showtabs=false,
+        emph=
+        {[1]
+                abs,acos,acosh,all,and,any,appendFile,approxRational,asTypeOf,asin,
+                asinh,atan,atan2,atanh,basicIORun,break,catch,ceiling,chr,compare,concat,concatMap,
+                const,cos,cosh,curry,cycle,decodeFloat,denominator,digitToInt,divMod,drop,
+                dropWhile,either,encodeFloat,enumFrom,enumFromThen,enumFromThenTo,enumFromTo,
+                error,even,exp,exponent,fail,filter,flip,floatDigits,floatRadix,floatRange,floor,
+                fmap,foldl,foldl1,foldr,foldr1,fromDouble,fromEnum,fromInt,fromInteger,fromIntegral,
+                fromRational,fst,gcd,getChar,getContents,getLine,head,id,inRange,index,init,intToDigit,
+                interact,ioError,isAlpha,isAlphaNum,isAscii,isControl,isDenormalized,isDigit,isHexDigit,
+                isIEEE,isInfinite,isLower,isNaN,isNegativeZero,isOctDigit,isPrint,isSpace,isUpper,iterate,
+                last,lcm,length,lex,lexDigits,lexLitChar,lines,log,logBase,lookup,map,mapM,mapM_,max,
+                maxBound,maximum,maybe,min,minBound,minimum,negate,not,null,numerator,odd,
+                or,ord,otherwise,pi,pred,primExitWith,print,product,properFraction,putChar,putStr,putStrLn,
+                quotRem,range,rangeSize,read,readDec,readFile,readFloat,readHex,readIO,readInt,readList,readLitChar,
+                readLn,readOct,readParen,readSigned,reads,readsPrec,realToFrac,recip,repeat,replicate,return,
+                reverse,round,scaleFloat,scanl,scanl1,scanr,scanr1,sequence,sequence_,show,showChar,showInt,
+                showList,showLitChar,showParen,showSigned,showString,shows,showsPrec,significand,signum,sin,
+                sinh,snd,span,splitAt,sqrt,subtract,succ,sum,tail,take,takeWhile,tan,tanh,threadToIOResult,toEnum,
+                toInt,toInteger,toLower,toRational,toUpper,truncate,uncurry,undefined,unlines,until,unwords,unzip,
+                unzip3,userError,words,writeFile,zip,zip3,zipWith,zipWith3,listArray,doParse
+        },
+        emphstyle={[1]\color{hsk-built-ins}},
+        emph=
+        {[2]
+                FilePath,IOError,Bool,Char,Double,Either,Float,IO,Integer,Int,Maybe,Ordering,Rational,Ratio,ReadS,ShowS,String, Word8,InPacket
+        },
+        emphstyle={[2]\color{hsk-types}},
+        emph=
+        {[3]
+                case,class,data,deriving,do,else,if,import,in,infixl,infixr,instance,let,
+                module,of,primitive,then,type,where
+        },
+        emphstyle={[3]\color{hsk-keywords}\textbf},
+        emph=
+        {[4]
+                quot,rem,div,mod,elem,notElem,seq
+        },
+        emphstyle={[4]\color{hsk-operators}\textbf},
+        emph=
+        {[5]
+                EQ,False,GT,Just,LT,Left,Nothing,Right,True,Show,Eq,Ord,Num,Enum,Bounded
+        },
+        emphstyle={[5]\color{hsk-consts}\textbf}
+}
+
+\lstnewenvironment{code}
+    {\lstset{language=ColorHaskell,basicstyle=\footnotesize\ttfamily}%
+      \csname lst@SetFirstLabel\endcsname}
+    {\csname lst@SaveFirstLabel\endcsname}
+    \lstset{
+      basicstyle=\footnotesize\ttfamily,
+      flexiblecolumns=false,
+      basewidth={0.5em,0.45em},
+      literate={+}{{$+$}}1 {/}{{$/$}}1 {*}{{$*$}}1 {=}{{$=$}}1
+               {>}{{$>$}}1 {<}{{$<$}}1 {\\}{{$\lambda$}}1
+               {\\\\}{{\char`\\\char`\\}}1
+               {->}{{$\rightarrow$}}2 {>=}{{$\geq$}}2 {<-}{{$\leftarrow$}}2
+               {<=}{{$\leq$}}2 {=>}{{$\Rightarrow$}}2
+               {>>}{{>>}}2 {>>=}{{>>=}}2
+               {|}{{$\mid$}}1
+    }
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Settings
+
+\AtBeginSection[]
+{
+   \begin{frame}
+       \frametitle{Outline}
+       \tableofcontents[currentsection,hideothersubsections]
+   \end{frame}
+}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamercovered{transparent}
+%% \setbeamertemplate{background}{%
+%%   \parbox[c][\paperheight]{\paperwidth}{%
+%%     \vfill \hfill
+%%     \includegraphics[width=\paperwidth,height=\paperheight]{bg}
+%%     \hfill \vfill
+%%   }}
+
+\mode
+<all>
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Misc
+
+%\pgfdeclaremask{masklogo}{img/logo}
+\newcommand\defaultlogo{\setfooterlogo{img/logo}{}}
+\defaultlogo
+
+\bibliographystyle{apalike}
+
+\newcolumntype{I}{!{\vrule width 1.2pt}}
+\newlength\savedwidth
+\newcommand\whline{\noalign{\global\savedwidth
+  \arrayrulewidth\global\arrayrulewidth 1.2pt}
+  \hline \noalign{\global\arrayrulewidth
+  \savedwidth}
+}
+
+\def\extrarowsep{3pt}
+\setlength\minrowclearance{3pt}
